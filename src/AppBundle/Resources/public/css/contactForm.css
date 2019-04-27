@@ -1,0 +1,12 @@
+#contact_form_addresses > .card {
+    margin-top: 1rem;
+}
+
+#contact_form_addresses > .card:first-child {
+    margin-top: 0;
+}
+
+fieldset legend.col-form-label {
+    font-size: 200%;
+    font-weight: bold;
+}

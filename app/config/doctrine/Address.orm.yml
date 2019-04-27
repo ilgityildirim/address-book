@@ -1,0 +1,92 @@
+AppBundle\Entity\Address:
+    type: entity
+    table: address
+    repositoryClass: AppBundle\Repository\AddressRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: guid
+            lenght: null
+            unique: false
+            nullable: false
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+        streetLine1:
+            type: string
+            nullable: false
+            length: 128
+            column: street_line1
+            options:
+                comment: 'street, house number, flat number'
+        streetLine2:
+            type: string
+            nullable: true
+            length: 128
+            options:
+                default: NULL
+        phoneNumber:
+            type: string
+            nullable: true
+            length: 16
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+            options:
+                default: NULL
+            gedmo:
+                timestampable:
+                    on: update
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+            options:
+                default: NULL
+    manyToOne:
+        contact:
+            targetEntity: AppBundle\Entity\Contact
+            cascade: {}
+            fetch: LAZY
+            mappedBy: contact
+            inversedBy: addresses
+            joinColumn:
+                name: contact_id
+                nullable: false
+                referencedColumnName: id
+        country:
+            targetEntity: AppBundle\Entity\Country
+            cascade: {}
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumn:
+                name: country_id
+                nullable: false
+                referencedColumnName: id
+        city:
+            targetEntity: AppBundle\Entity\City
+            cascade: {}
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumn:
+                name: city_id
+                nullable: false
+                referencedColumnName: id

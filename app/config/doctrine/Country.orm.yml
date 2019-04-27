@@ -1,0 +1,59 @@
+AppBundle\Entity\Country:
+    type: entity
+    table: country
+    repositoryClass: AppBundle\Repository\CountryRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: guid
+            lenght: null
+            unique: false
+            nullable: false
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+        code:
+            type: string
+            nullable: false
+            length: 5
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+            options:
+                default: NULL
+            gedmo:
+                timestampable:
+                    on: update
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+            options:
+                default: NULL
+    oneToMany:
+        cities:
+            targetEntity: AppBundle\Entity\City
+            cascade:
+                - remove
+                - persist
+            fetch: LAZY
+            mappedBy: country
+            inversedBy: null
+            orphanRemoval: true
+            orderBy: null

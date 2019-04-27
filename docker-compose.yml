@@ -1,0 +1,53 @@
+version: '3.1'
+
+volumes:
+  database:
+    driver: local
+
+networks:
+  default:
+    ipam:
+      driver: default
+      config:
+        - subnet: ${DOCKER_SUBNET}
+
+services:
+  sqlite3:
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./db/:/root/db/
+  php-fpm:
+    image: php7.2-fpm
+    build: ./docker/php-fpm
+    env_file: .env
+    volumes:
+      - .:/var/www
+      - ./logs/symfony:/var/www/var/log
+  php:
+    image: php7.2-cli
+    build: ./docker/php-cli
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www
+  composer:
+    image: composer:7.2
+    build: ./docker/composer
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www
+  nginx:
+    image: nginx
+    build: ./docker/nginx
+    tty: true
+    volumes:
+      - .:/var/www
+      - ./logs/nginx/:/var/log/nginx
+    ports:
+      - ${DOCKER_GATEWAY_IP}:80:80
+      - ${DOCKER_GATEWAY_IP}:443:443
+    depends_on:
+      - php-fpm

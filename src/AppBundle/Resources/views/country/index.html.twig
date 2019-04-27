@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Address Book - Country List{% endblock %}
+
+{% block body %}
+    <div class="row mt-5 mb-5">
+        <div class="col-6">
+            <a href="{{ url('homepage') }}" class="btn btn-default mr-3">Contacts</a>
+            <a href="{{ url('city_list') }}" class="btn btn-default">Cities</a>
+        </div>
+        <div class="col-6 text-right">
+            <a href="{{ url('new_country') }}" class="btn btn-primary">New Country</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for country in countries %}
+                    <tr>
+                        <td>{{ country.id }}</td>
+                        <td>{{ country.name }}</td>
+                        <td>
+                            <a href="{{ url('edit_country', {'id': country.id}) }}">Edit</a>
+                            |
+                            <a href="{{ url('delete_country', {'id': country.id}) }}">Delete</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">There are no countries to show</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,78 @@
+homepage:
+    path: /
+    defaults:
+        _controller: AppBundle\Controller\HomepageController
+
+country_list:
+    path: /country
+    defaults:
+        _controller: AppBundle\Controller\Country\CountryListController
+
+new_country:
+    path: /country/new
+    defaults:
+        _controller: AppBundle\Controller\Country\NewCountryController
+
+delete_country:
+    path: /country/delete/{id}
+    defaults:
+        _controller: AppBundle\Controller\Country\DeleteCountryController
+    requirements:
+        id: '([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}'
+
+edit_country:
+    path: /country/edit/{id}
+    defaults:
+        _controller: AppBundle\Controller\Country\EditCountryController
+    requirements:
+        id: '([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}'
+
+country_city_list:
+    path: /country/{id}/cities
+    defaults:
+        _controller: AppBundle\Controller\Country\CountryCityListController
+    requirements:
+        id: '([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}'
+
+city_list:
+    path: /city
+    defaults:
+        _controller: AppBundle\Controller\City\CityListController
+
+new_city:
+    path: /city/new
+    defaults:
+        _controller: AppBundle\Controller\City\NewCityController
+
+delete_city:
+    path: /city/delete/{id}
+    defaults:
+        _controller: AppBundle\Controller\City\DeleteCityController
+    requirements:
+        id: '([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}'
+
+edit_city:
+    path: /city/edit/{id}
+    defaults:
+        _controller: AppBundle\Controller\City\EditCityController
+    requirements:
+        id: '([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}'
+
+new_contact:
+    path: /contact/new
+    defaults:
+        _controller: AppBundle\Controller\Contact\NewContactController
+
+delete_contact:
+    path: /contact/delete/{id}
+    defaults:
+        _controller: AppBundle\Controller\Contact\DeleteContactController
+    requirements:
+        id: '([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}'
+
+edit_contact:
+    path: /contact/edit/{id}
+    defaults:
+        _controller: AppBundle\Controller\Contact\EditContactController
+    requirements:
+        id: '([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}'

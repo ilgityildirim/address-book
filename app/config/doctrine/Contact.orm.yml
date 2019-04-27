@@ -1,0 +1,69 @@
+AppBundle\Entity\Contact:
+    type: entity
+    table: contact
+    repositoryClass: AppBundle\Repository\ContactRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: guid
+            lenght: null
+            unique: false
+            nullable: false
+            id: true
+            generator:
+                strategy: UUID
+    fields:
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+        lastName:
+            type: string
+            nullable: false
+            length: 255
+        email:
+            type: string
+            nullable: false
+            length: 255
+        birthday:
+            type: date
+            nullable: true
+            length: 255
+            options:
+                default: 0000-00-00
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+            options:
+                default: NULL
+            gedmo:
+                timestampable:
+                    on: update
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+            options:
+                default: NULL
+    oneToMany:
+        addresses:
+            targetEntity: AppBundle\Entity\Address
+            cascade:
+                - remove
+                - persist
+            fetch: LAZY
+            mappedBy: contact
+            inversedBy: contact
+            orphanRemoval: true
+            orderBy: null

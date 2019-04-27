@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Address Book - Edit {{ city.name }}{% endblock %}
+
+{% block body %}
+    <div class="row mt-5 mb-5">
+        <div class="col-12 text-right">
+            <a href="{{ url('city_list') }}" class="btn btn-default">City Listing</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ form_start(form) }}
+                {{ form_row(form.country) }}
+                {{ form_row(form.name) }}
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary">{{ 'save'|capitalize }}</button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
