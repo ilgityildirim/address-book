@@ -146,7 +146,7 @@ class Contact
      */
     public function getFullName()
     {
-        $fullName = $this->getFirstName() . ' ' . $this->getLastName();
+        $fullName = trim($this->getFirstName() . ' ' . $this->getLastName());
         return strlen($fullName) > 1 ? $fullName : null;
     }
 }
